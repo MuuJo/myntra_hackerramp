@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myntra - Pant Only</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <a href="{{ url_for('home_page') }}"><img src="{{ url_for('static', filename='images/logo-myntra-41466.png') }}" alt="Myntra Logo"></a>
+            </div>
+            <div class="first">
+                <a href="#">MEN</a>
+                <a href="#">WOMEN</a>
+                <a href="#">KIDS</a>
+                <a href="#">HOME & LIVING</a>
+                <a href="#">BEAUTY</a>
+                <a href="{{ url_for('aesthetic_page') }}">AESTHETICS</a>
+            </div>
+            <div class="middle">
+                <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search Icon" style="height: 16px; margin-right: 5px;">
+                <input type="search" name="search" id="search" placeholder="Search for products, brands and more">
+            </div>
+            <div class="last">
+                <a href="{{ url_for('profile_page') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/nav_profile.png') }}" alt="Profile">
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/icons8-heart-50.png') }}" alt="Wishlist">
+                    <span>Wishlist</span>
+                </a>
+                <a href="{{ url_for('friend_cart') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/shopping-bag.png') }}" alt="Bag">
+                    <span>Bag</span>
+                </a>
+                <a href="http://localhost:5173/" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/chat_icon.png') }}" alt="Chat-icon">
+                    <span>Friends</span>
+                </a>
+            </div>
+        </div>
+        <div class="categories-bar">
+            <a href="{{ url_for('product_shirts') }}">Shirts</a>
+            <a href="#">Skirts</a>
+            <a href="#">Suits</a>
+            <a href="#">Footwear</a>
+            <a href="{{ url_for('products_pants') }}">Pants</a>
+            <a href="#">Ethnic</a>
+            <a href="#">Accessories</a>
+            <input type="text" placeholder="Enter aesthetic name">
+            <button class="save-button">Save</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="left-column">
+            <div class="mannequin-container">
+                <img src="{{ url_for('static', filename='images/mannequin2.jpg') }}" alt="Mannequin" class="mannequin-image" id="center-image">
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="your-picks-container" id="yourPicksContainer">
+                <h2>Your Picks</h2>
+                <!-- Shirt -->
+                <div class="product-item">
+                    <div class="product-image-wrapper">
+                        <input type="checkbox" id="shirtCheckbox" class="product-checkbox custom-checkbox" data-image-id="men-2.jpg" data-image="{{ url_for('static', filename='images/white_shirt.png') }}">
+                        <img src="{{ url_for('static', filename='images/men-2.jpg') }}" alt="Product Image" class="product-image">
+                    </div>
+                    <div class="product-description">
+                        <p>The Souled Store</p>
+                        <p>Unisex Slim Fit T-Shirt</p>
+                    </div>
+                </div>
+                <!-- Pants -->
+                <div class="product-item">
+                    <div class="product-image-wrapper">
+                        <input type="checkbox" id="pantCheckbox" class="product-checkbox custom-checkbox" data-image-id="pants-8.jpg" data-image="{{ url_for('static', filename='images/white_pant.png') }}">
+                        <img src="{{ url_for('static', filename='images/shorts-11.jpg') }}" alt="Product Image" class="product-image">
+                    </div>
+                    <div class="product-description">
+                        <p>Levis</p>
+                        <p>Men 512 Slim Tapered Fit Jeans</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="action-buttons">
+        <button class="save-button">Save</button>
+        <a href="{{ url_for('profile_page') }}">
+            <button class="exit-button">Exit</button>
+        </a>
+    </div>
+
+    <div id="similar-products-container">
+        <h2>Similar Products</h2>
+        <div id="similar-products"></div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            console.log("Script loaded");
+            
+
+            const shirtCheckbox = $('#shirtCheckbox');
+            const pantCheckbox = $('#pantCheckbox');
+            const centerImage = $('#center-image');
+            const originalSrc = centerImage.attr('src');
+
+            const shirtImage = "{{ url_for('static', filename='images/white_shirt_only.png') }}";
+            const pantImage = "{{ url_for('static', filename='images/pant_only.png') }}";
+            const combinedImage = "{{ url_for('static', filename='images/shirt-pant.png') }}";
+
+            function updateMannequin() {
+                const shirtChecked = shirtCheckbox.is(':checked');
+                const pantChecked = pantCheckbox.is(':checked');
+
+                if (shirtChecked && pantChecked) {
+                    console.log("Both checked - updating to combined image");
+                    centerImage.attr('src', combinedImage);
+                    $('#similar-products').empty(); // Clear recommendations when both are selected
+                } else if (shirtChecked) {
+                    console.log("Shirt checked - updating mannequin and loading similar shirts");
+                    centerImage.attr('src', shirtImage);
+                    loadSimilarProducts(shirtCheckbox.data('image-id'));
+                } else if (pantChecked) {
+                    console.log("Pant checked - updating mannequin and loading similar pants");
+                    centerImage.attr('src', pantImage);
+                    loadSimilarProducts(pantCheckbox.data('image-id'));
+                } else {
+                    console.log("None checked - resetting to original image");
+                    centerImage.attr('src', originalSrc);
+                    $('#similar-products').empty(); // Clear if no checkbox is checked
+                }
+            }
+
+            function loadSimilarProducts(imageId) {
+                console.log("Loading similar products for image ID:", imageId);
+                $.ajax({
+                    url: '/recommend',
+                    type: 'POST',
+                    data: {'image_id': imageId},
+                    success: function(response) {
+                        console.log("Received response from Flask:", response);
+
+                        $('#similar-products').empty();
+
+                        response.similar_images.forEach(function(img_path) {
+                            var full_img_path = "{{ url_for('static', filename='') }}" + img_path;
+                            console.log("Constructed image path:", full_img_path);
+                            $('#similar-products').append('<img src="' + full_img_path + '" alt="Similar Product" style="width: 100px; margin: 10px;">');
+                        });
+                    },
+                    error: function(error) {
+                        console.log('Error in AJAX request:', error);
+                    }
+                });
+            }
+
+            // Event listeners
+            shirtCheckbox.change(updateMannequin);
+            pantCheckbox.change(updateMannequin);
+        });
+    </script>
+</body>
+</html>

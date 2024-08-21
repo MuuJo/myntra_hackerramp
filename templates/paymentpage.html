@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #ffffff;">
+    <header>
+        <img src="{{ url_for('static', filename='images/paym-top.png') }}" alt="Topbar Image" id="topbar-image">
+    </header>
+    <h4 class="our-bag">OUR BAG</h4>
+    <div class="center-left-container">
+        <img src="paymentsimages/deliver_to1.png" class="deliver" alt="Delivery Image 1">
+        <img src="paymentsimages/d2.png" class="deliver" alt="Delivery Image 2">
+        <div class="cl">
+            <img src="{{ url_for('static', filename='images/clothes.png') }}" class="clothes" alt="Clothes Image">
+        </div>
+        <div class="offer-container">
+            <img src="{{ url_for('static', filename='images/offeravail.png') }}" class="deliver" alt="Offer Image">
+        </div>
+    </div>
+    <div class="vertical-line"></div>
+    <div class="right-container">
+        <img src="{{ url_for('static', filename='images/tot_amt.png') }}" class="tot" alt="Total Amount">
+        <div class="button-container">
+            <a href="{{ url_for('gd') }}">
+                <button class="btn myntra">GO DUTCH</button>
+            </a>
+            <a href="{{ url_for('fofo') }}">
+                <button class="btn pink">FIFTY-FIFTY</button>
+            </a>
+            <a href="{{ url_for('oad') }}">
+                <button class="btn font">ONE AND DONE</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

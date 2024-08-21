@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        #topbar-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .our-bag {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .center-left-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .deliver, .clothes, .offer-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .vertical-line {
+            width: 1px;
+            background-color: #e0e0e0;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+        }
+
+        .right-container {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .tot {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .myntra {
+            background-color: #ff3f6c; /* Example color */
+        }
+
+        .pink {
+            background-color: #f8a0b0; /* Example color */
+        }
+
+        .font {
+            background-color: #3f9aeb; /* Example color */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/paym-top.png') }}" alt="Topbar Image" id="topbar-image">
+    </header>
+    <h4 class="our-bag">OUR BAG</h4>
+    <div class="center-left-container">
+        <img src="{{ url_for('static', filename='paymentsimages/deliver_to1.png') }}" class="deliver" alt="Delivery Image 1">
+        <img src="{{ url_for('static', filename='paymentsimages/d2.png') }}" class="deliver" alt="Delivery Image 2">
+        <div class="cl">
+            <img src="{{ url_for('static', filename='images/clothes.png') }}" class="clothes" alt="Clothes Image">
+        </div>
+        <div class="offer-container">
+            <img src="{{ url_for('static', filename='images/offeravail.png') }}" class="deliver" alt="Offer Image">
+        </div>
+    </div>
+    <div class="vertical-line"></div>
+    <div class="right-container">
+        <img src="{{ url_for('static', filename='images/tot_amt.png') }}" class="tot" alt="Total Amount">
+        <div class="button-container">
+            <a href="{{ url_for('gd') }}">
+                <button class="btn myntra">GO DUTCH</button>
+            </a>
+            <a href="{{ url_for('fofo') }}">
+                <button class="btn pink">FIFTY-FIFTY</button>
+            </a>
+            <a href="{{ url_for('oad') }}">
+                <button class="btn font">ONE AND DONE</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

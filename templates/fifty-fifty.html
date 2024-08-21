@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head> 
+<body style="background-color: #ffffff;">
+    <header>
+        <img src="{{ url_for('static', filename='images/paym-top.png') }}" alt="Topbar Image" id="topbar-image">
+    </header>
+    <div class="select_address">
+        <img src="{{ url_for('static', filename='images/s_ad.png') }}" class="s_ad-image"></img>
+        <label>
+            <input type="checkbox" name="ad1" class="checkbox_1">
+            <img src="p{{ url_for('static', filename='images/ad-1.png') }}" class="ad-image"></img>
+        </label>
+        <label>
+            <input type="checkbox" name="ad2" class="checkbox_2">
+            <img src="{{ url_for('static', filename='images/ad_2.png') }}" class="ad-2-image"></img>
+        </label>
+    </div>
+    <div class="right-container-gd">
+        <img src="{{ url_for('static', filename='images/gd1.png') }}" class="tot">
+        <div class="amount-payable">Amount Payable: ₹707</div>
+        <button class="continue-button">Continue</button>
+    </div>
+</body>
+</html>

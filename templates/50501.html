@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fifty-Fifty Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #topbar-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .title {
+            text-align: center;
+            color: #333;
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        .data-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            color: #555;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .no-data {
+            color: #777;
+            font-size: 1.2em;
+        }
+
+        .continue-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #ff69b4; /* Pink color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .continue-button:hover {
+            background-color: #ff85c0; /* Lighter pink on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/paym-top.png') }}" alt="Topbar Image" id="topbar-image">
+    </header>
+    <h1 class="title">Fifty-Fifty</h1>
+    <div class="data-container">
+        {% if data %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[2] }}</td>
+                            <td>{{ row[3] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-data">No data available.</p>
+        {% endif %}
+        <a href="/some-next-page" class="continue-button">Continue</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script>
+        async function addToCart(productId, quantity) {
+            // Construct the request payload
+            const payload = {
+                product_id: productId,
+                quantity: quantity
+            };
+
+            // Send a POST request to the server
+            const response = await fetch('/add_to_cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            // Handle the response
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.message);
+                // Optionally update the UI with cart details
+                document.getElementById('cart-status').innerText = data.cart_status;
+            } else {
+                console.error('Failed to add to cart');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Product List</h1>
+    <div>
+        <h2>Product 1</h2>
+        <button onclick="addToCart(1, 1)">Add to Cart</button>
+    </div>
+    <div>
+        <h2>Product 2</h2>
+        <button onclick="addToCart(2, 1)">Add to Cart</button>
+    </div>
+    <p id="cart-status"></p>
+</body>
+</html>

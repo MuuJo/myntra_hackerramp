@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myntra</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style (1).css') }}">
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <a href="{{ url_for('home_page') }}"><img src="{{ url_for('static', filename='images/logo-myntra-41466.png') }}" alt="Myntra Logo"></a>
+            </div>
+            <div class="first">
+                <a href="#">MEN</a>
+                <a href="#">WOMEN</a>
+                <a href="#">KIDS</a>
+                <a href="#">HOME & LIVING</a>
+                <a href="#">BEAUTY</a>
+                <a href="#">STUDIO</a>
+                <a href="{{ url_for('aesthetic_page') }}">AESTHETICS</a>
+            </div>
+            <div class="middle">
+                <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search Icon" style="height: 16px; margin-right: 5px;">
+                <input type="search" name="search" id="search" placeholder="Search for products, brands and more">
+            </div>
+            <div class="last">
+                <a href="{{ url_for('profile_page') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/nav_profile.png') }}" alt="Profile">
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/icons8-heart-50.png') }}" alt="Wishlist">
+                    <span>Wishlist</span>
+                </a>
+                <a href="{{ url_for('shared_cart') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/shopping-bag.png') }}" alt="Bag">
+                    <span>Bag</span>
+                </a>
+                <a href="#" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/chat_icon.png') }}" alt="Chat-icon">
+                    <span>Friends</span>
+                </a>
+            </div>
+        </div>
+        <div class="categories-bar">
+            <a href="{{ url_for('product_shirts') }}">Shirts</a>
+            <a href="#">Skirts</a>
+            <a href="#">Suits</a>
+            <a href="#">Footwear</a>
+            <a href="products-pants.html">Pants</a>
+            <a href="#">Ethnic</a>
+            <a href="#">Accessories</a>
+	    <div class="categories-bar">
+    		<form action="{{ url_for('add_name') }}" method="POST">
+                	<input type="text"  name="aesthetic_name" placeholder="Enter aesthetic name">
+            		<button class="save-button">Save</button>
+		</form>
+            </div>
+    </header>
+
+    <div class="container">
+        <div class="left-column">
+            <div class="mannequin-container">
+                <img src="{{ url_for('static', filename='images/mannequin2.jpg') }}" alt="Mannequin" class="mannequin-image">
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="your-picks-container" id="yourPicksContainer">
+                <h2>Your Picks</h2>
+                <div class="product-item">
+                    <!-- Selected items will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="save-button">Save</button>
+        <button class="exit-button">Exit</button>
+    </div>
+
+
+	
+
+</body>
+</html>

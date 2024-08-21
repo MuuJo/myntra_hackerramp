@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Own Aesthetic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="topbar.PNG" alt="Topbar Image" id="topbar-image">
+    </header>
+    <div id="settings-container">
+        <div id="name-container">
+            <label for="aesthetic-name">Name:</label>
+            <input type="text" id="aesthetic-name" placeholder="Enter Name">
+        </div>
+        <div id="toggle-container">
+            <label for="privacy-toggle">Privacy settings:</label>
+            <div class="toggle-switch">
+                <input type="checkbox" id="privacy-toggle" class="toggle-switch-checkbox">
+                <label for="privacy-toggle" class="toggle-switch-label">
+                    <span class="toggle-switch-inner"></span>
+                    <span class="toggle-switch-switch"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <main>
+        <h1>Build your own aesthetic</h1>
+        <div id="main-container">
+            <div id="categories-container" class="container">
+                <h2>Categories</h2>
+                <div class="categories-box">
+                    <div class="categories-grid">
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="jackets2.PNG" alt="Jackets">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="YOUR_LINK_MEN_HERE">Men</a>
+                                <a href="YOUR_LINK_WOMEN_HERE">Women</a>
+                                <a href="YOUR_LINK_KIDS_HERE">Kids</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="shirt2.PNG" alt="Shirts">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="product-shirts.html">Men</a>
+                                <a href="https://www.myntra.com/myntra-fashion-store?f=Categories%3ATshirts%3A%3AGender%3Amen%20women%2Cwomen">Women</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="skirts2.PNG" alt="Skirts">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="YOUR_LINK_WOMEN_HERE">Women</a>
+                                <a href="YOUR_LINK_KIDS_HERE">Kids</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="suits2.PNG" alt="Suits">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="YOUR_LINK_MEN_HERE">Men</a>
+                                <a href="YOUR_LINK_WOMEN_HERE">Women</a>
+                                <a href="YOUR_LINK_KIDS_HERE">Kids</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="foo2.PNG" alt="Footwear">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="YOUR_LINK_MEN_HERE">Men</a>
+                                <a href="YOUR_LINK_WOMEN_HERE">Women</a>
+                                <a href="YOUR_LINK_KIDS_HERE">Kids</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="pants2.PNG" alt="Pants">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="products-pants.html">Men</a>
+                                <a href="YOUR_LINK_WOMEN_HERE">Women</a>
+                                <a href="YOUR_LINK_KIDS_HERE">Kids</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="ethnic2.PNG" alt="Ethnic">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="YOUR_LINK_MEN_HERE">Men</a>
+                                <a href="YOUR_LINK_WOMEN_HERE">Women</a>
+                                <a href="YOUR_LINK_KIDS_HERE">Kids</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="acc2.PNG" alt="Accessories">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="YOUR_LINK_MEN_HERE">Men</a>
+                                <a href="YOUR_LINK_WOMEN_HERE">Women</a>
+                                <a href="YOUR_LINK_KIDS_HERE">Kids</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="hats2.PNG" alt="Hats">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="YOUR_LINK_MEN_HERE">Men</a>
+                                <a href="YOUR_LINK_WOMEN_HERE">Women</a>
+                                <a href="YOUR_LINK_KIDS_HERE">Kids</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="drop-container" class="container">
+                <img src="maneq.png" alt="Your Image" id="center-image">
+            </div>            
+            <div id="button-list-container">
+                <h2 class="section-title">Wardrobe Picks</h2>
+                <ul id="button-list">
+                    <li>
+                        <label class="custom-button-label">
+                            <input type="checkbox" class="custom-checkbox" data-image="black-t.png">
+                            <span class="custom-button">Statement Textured T-Shirt</span>
+                        </label>
+                        <label class="custom-button-label">
+                            <input type="checkbox" class="custom-checkbox" data-image="shorts.png">
+                            <span class="custom-button">Men Slim Fit Denim Shorts</span>
+                        </label>
+                    </li>
+                    <!-- Add more list items as needed -->
+                </ul>
+            </div>
+        </div>
+        <div id="button-container">
+            <button class="save-button" id="button1">Save</button>
+            <button class="save-button" id="button2">Exit</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

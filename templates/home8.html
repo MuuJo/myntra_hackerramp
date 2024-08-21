@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Bar with Image</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .title-bar {
+            background-color: transparent; /* Remove background color */
+            padding: 0; /* Remove space around the image */
+            margin: 0; /* Remove any margin */
+            width: 100%; /* Extend the title bar to the full width of the viewport */
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center align items vertically */
+            position: relative; /* Make the container a positioning context for the clickable images */
+        }
+
+        .title-bar img {
+            display: block; /* Remove space below the image */
+            height: auto; /* Maintain the aspect ratio of the image */
+        }
+
+        .title-bar .logo {
+            width: 120%; /* Make the top bar image bigger */
+        }
+
+        .title-bar .clickable-image, 
+        .title-bar .another-image,
+        .title-bar .small-image1,
+        .title-bar .small-image2 {
+            height: auto; /* Maintain the aspect ratio of the images */
+            position: absolute; /* Use absolute positioning */
+        }
+
+        .title-bar .clickable-image {
+            width: 3%; /* Set the size of the clickable image */
+            right: 1%; /* Align to the right edge of the title bar */
+            top: 27%; /* Align to the top edge of the title bar */
+        }
+
+        .title-bar .another-image {
+            width: 6%; /* Make the another image bigger */
+            right: 48.5%; /* Shift the another image much more to the left */
+            top: 37%; /* Align to the top edge of the title bar */
+        }
+
+        .title-bar .small-image1 {
+            width: 3%; /* Set the size of the first small image */
+            right: 15%; /* Position to the left of the clickable-image */
+            top: 20%; /* Align it above the clickable-image */
+        }
+
+        .title-bar .small-image2 {
+            width: 3%; /* Set the size of the second small image */
+            right: 6%; /* Position to the left of the another-image */
+            top: 20%; /* Align it above the another-image */
+        }
+
+        /* Optional: Add hover effect to the clickable images */
+        .title-bar .clickable-image:hover,
+        .title-bar .another-image:hover,
+        .title-bar .small-image1:hover,
+        .title-bar .small-image2:hover {
+            opacity: 0.8; /* Slightly fade the images on hover */
+        }
+
+        .below-bar img {
+            display: block; /* Remove space below the image */
+            width: 100%; /* Make the image cover the full width of the container */
+            height: auto; /* Maintain the aspect ratio of the image */
+            margin-top: 20px; /* Add some space between the title bar and the new image */
+        }
+
+        .additional-bar img {
+            display: block; /* Remove space below the image */
+            width: 25%; /* Make the writ image smaller */
+            height: auto; /* Maintain the aspect ratio of the image */
+            margin-top: 20px; /* Add some space between the images */
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .logo img {
+            height: 40px;
+        }
+        .first {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .first a {
+            text-decoration: none;
+            color: #000;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .middle {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 5px 10px;
+            background-color: #f7f7f7;
+        }
+        .middle input {
+            border: none;
+            outline: none;
+            background: none;
+            padding: 5px;
+            width: 200px;
+        }
+        .middle input::placeholder {
+            color: #ccc;
+        }
+        .last {
+            display: flex;
+            align-items: center;
+        }
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            margin: 0 10px;
+            font-size: 10px;
+        }
+        .icon-container img {
+            height: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <a href="{{ url_for('home_page') }}"><img src="{{ url_for('static', filename='images/logo-myntra-41466.png') }}" alt="Myntra Logo"></a>
+            </div>
+            <div class="first">
+                <a href="{{ url_for('product_shirts') }}">MEN</a>
+                <a href="#">WOMEN</a>
+                <a href="#">KIDS</a>
+                <a href="#">HOME & LIVING</a>
+                <a href="#">BEAUTY</a>
+                <a href="#">STUDIO</a>
+                <a href="{{ url_for('aesthetic_page') }}">AESTHETICS</a>
+            </div>
+            <div class="middle">
+                <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search Icon" style="height: 16px; margin-right: 5px;">
+                <input type="search" name="search" id="search" placeholder="Search for products, brands and more">
+            </div>
+            <div class="last">
+                <a href="{{ url_for('profile_page') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/nav_profile.png') }}" alt="Profile">
+                    <span>Profile</span>
+                </a>
+                <a href="" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/icons8-heart-50.png') }}" alt="Wishlist">
+                    <span>Wishlist</span>
+                </a>
+                <a href="{{ url_for('friend_cart') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/shopping-bag.png') }}" alt="Bag">
+                    <span>Bag</span>
+                </a>
+                <a href="http://localhost:5173/" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/chat_icon.png') }}" alt="Chat-icon">
+                    <span>Friends</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="below-bar">
+        <img src="{{ url_for('static', filename='images/men.JPG') }}" alt="Below Bar Image">
+    </div>
+    <div class="additional-bar">
+        <img src="{{ url_for('static', filename='images/writ.PNG') }}" alt="Additional Image">
+    </div>
+</body>
+</html>

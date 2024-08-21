@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One and Done Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            position: relative;
+            text-align: center;
+        }
+        #topbar-image {
+            width: 100%;
+            height: auto;
+        }
+        .title-bar {
+            background-color: #ff69b4; /* Pink bar color */
+            color: #ffffff;
+            padding: 10px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .data-container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f4f4f4;
+        }
+        table img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 4px;
+        }
+        .total-payable {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .no-data {
+            font-size: 1em;
+            color: #666;
+        }
+        .continue-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .continue-button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img id="topbar-image" src="{{ url_for('static', filename='images/topbar.png') }}" alt="Topbar Image">
+        <div class="title-bar">One and Done</div>
+    </header>
+
+    <div class="data-container">
+        {% if all_items %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Article ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in all_items %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>Rs.{{ item[3] }}</td>
+                        <td><img src="{{ url_for('static', filename=item[4]) }}" alt="{{ item[1] }}"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="total-payable">Total Amount Payable: Rs.{{ amount_payable }}</p>
+        {% else %}
+            <p class="no-data">No data available</p>
+        {% endif %}
+    </div>
+
+    <div style="text-align: center;">
+        <a href="/home8.html" class="continue-button">Continue</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Own Aesthetic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style (1).css') }}">
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <a href="{{ url_for('w_f') }}"><img src="{{ url_for('static', filename='images/logo-myntra-41466.png') }}" alt="Myntra Logo"></a>
+            </div>
+            <div class="first">
+                <a href="{{ url_for('product_shirts') }}">MEN</a>
+                <a href="#">WOMEN</a>
+                <a href="#">KIDS</a>
+                <a href="#">HOME & LIVING</a>
+                <a href="#">BEAUTY</a>
+                <a href="#">STUDIO</a>
+                <a href="{{ url_for('aesthetic_page') }}">AESTHETICS</a>
+            </div>
+            <div class="middle">
+                <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search Icon" style="height: 16px; margin-right: 5px;">
+                <input type="search" name="search" id="search" placeholder="Search for products, brands and more">
+            </div>
+            <div class="last">
+                <a href="{{ url_for('profile_page') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/nav_profile.png') }}" alt="Profile">
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/icons8-heart-50.png') }}" alt="Wishlist">
+                    <span>Wishlist</span>
+                </a>
+                <a href="{{ url_for('shared_cart') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/shopping-bag.png') }}" alt="Bag">
+                    <span>Bag</span>
+                </a>
+                <a href="#" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/chat_icon.png') }}" alt="Chat-icon">
+                    <span>Friends</span>
+                </a>
+            </div>
+        </div>
+    </header>
+        <div id="bottom-line"></div>
+    <style>
+        .product-container {
+            display: flex;
+            max-width: 900px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-images {
+            flex: 1;
+            text-align: center;
+        }
+        .product-images img {
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        .product-details {
+            flex: 2;
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .rating {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .price {
+            font-size: 20px;
+            color: #e53935;
+            margin-bottom: 20px;
+        }
+        .discount {
+            text-decoration: line-through;
+            color: #aaa;
+            margin-left: 10px;
+        }
+        .sizes {
+            margin-bottom: 20px;
+        }
+        .sizes span {
+            margin-right: 10px;
+        }
+        .sizes input {
+            margin-right: 5px;
+        }
+        .buttons {
+            display: flex;
+            align-items: center;
+        }
+        .buttons button {
+            background-color: #e53935;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .buttons button:last-child {
+            background-color: #555;
+        }
+        .more-colors img {
+            width: 250px;
+            height: 50px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+<div class="product-container">
+    <div class="product-images">
+        <img src="{{ url_for('static', filename='images/t1.png') }}" alt="Product Image 1">
+        <img src="{{ url_for('static', filename='images/t2.jpg') }}" alt="Product Image 2">
+    </div>
+    <div class="product-details">
+        <div class="product-title">DaMENSCH NEO-Cool Pure Cotton Pocket Print Tank Top</div>
+        <div class="rating">4.4 ★ | 1.2k Ratings</div>
+        <div class="price">₹647 <span class="discount">₹799</span> (19% OFF)</div>
+        <div class="sizes">
+            <span>Select Size</span>
+            <input type="radio" name="size" id="size-s"><label for="size-s">S</label>
+            <input type="radio" name="size" id="size-m"><label for="size-m">M</label>
+            <input type="radio" name="size" id="size-l"><label for="size-l">L</label>
+            <input type="radio" name="size" id="size-xl"><label for="size-xl">XL</label>
+            <input type="radio" name="size" id="size-xxl"><label for="size-xxl">XXL</label>
+        </div>
+        <div class="buttons">
+    	<form action="{{ url_for('add_to_bag') }}" method="POST">
+        	<input type="hidden" name="product_name" value="DaMENSCH NEO-Cool Pure Cotton Pocket Print Tank Top">
+        	<input type="hidden" name="description" value="Pure Cotton Pocket Print Tank Top">
+        	<input type="hidden" name="price" value="647">
+        	<input type="hidden" name="image_path" value="images/t2.jpg") }}">
+        	<button type="submit">Add to Bag</button>
+    	</form>
+    		<button>Wishlist</button>
+	</div>
+
+         {% if message %}
+    		<p>{{ message }}</p>
+	{% endif %}  
+    </div>
+</div>
+
+</body>
+</html>

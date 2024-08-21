@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myntra Style Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> <!-- Link your existing stylesheet -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background-color: #f9f9f9; /* Background color for the entire body */
+        }
+
+        .title-bar {
+            width: 100%;
+            height: auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .title-bar img {
+            width: 100%;
+            height: auto;
+            object-fit: fill;
+        }
+
+        .breadcrumb-sort-bar {
+            width: 100%;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            position: fixed;
+            top: 80px; /* Adjusted to make space for title bar */
+            left: 0;
+            z-index: 9;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #000;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .sort-options {
+            font-size: 14px;
+            color: #000;
+            display: flex;
+            align-items: center;
+        }
+
+        .sort-options select {
+            margin-left: 5px;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .main-container {
+            display: flex;
+            margin-top: 140px; /* Adjusted to make space for breadcrumb bar */
+        }
+
+        .left-bar {
+            width: 250px;
+            background-color: #fff; /* White background for the filters section */
+            padding: 20px;
+            box-sizing: border-box;
+            border-right: 1px solid #ddd;
+            flex-shrink: 0;
+        }
+
+        .filter-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .filter-section h4 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .filter-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .filter-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .filter-section ul li label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .filter-section ul li label span {
+            font-size: 14px; /* Adjust font size if needed */
+            color: #666;
+            margin-left: 10px;
+        }
+
+        .filter-section ul li input[type="checkbox"],
+        .filter-section ul li input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            border: 1px solid #ddd; /* Add border for better visibility */
+        }
+
+        .content-placeholder {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff; /* White background for the content section */
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 10px;
+            transition: transform 0.3s;
+        }
+
+        .content-item a {
+            display: block;
+            width: 100%;
+            height: auto;
+            text-decoration: none;
+        }
+
+        .content-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .content-item:hover {
+            transform: perspective(1000px) rotateY(5deg) rotateX(5deg);
+        }
+
+        .content-item:hover img {
+            cursor: pointer;
+        }
+
+        .settings-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .settings-button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .content-placeholder {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .left-bar {
+                width: 200px;
+            }
+
+            .content-placeholder {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-placeholder {
+                grid-template-columns: 1fr;
+            }
+
+            .left-bar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .content-placeholder {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title-bar">
+        <img src="{{ url_for('static', filename='images/topbar.PNG') }}" alt="Title Bar Image">
+    </div>
+    
+    <div class="breadcrumb-sort-bar">
+        <div class="breadcrumb">
+            <a href="#">Home</a> / 
+            <a href="#">Clothing</a> / 
+            <a href="#">Men Pants</a>
+        </div>
+        <div class="sort-options">
+            <label for="sort">Sort by:</label>
+            <select id="sort">
+                <option value="recommended">Recommended</option>
+                <option value="priceLowToHigh">Price: Low to High</option>
+                <option value="priceHighToLow">Price: High to Low</option>
+                <option value="newArrivals">New Arrivals</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="left-bar">
+            <div class="filter-title">Filter</div>
+            <div class="filter-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>Shorts <span>(144749)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>Lounge Shorts <span>(426)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>Pants <span>(537)</span></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="filter-section">
+                <h4>Brand</h4>
+                <ul>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>macmerise <span>(1881)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>Roadster <span>(1048)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>BAESD <span>(982)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>Friskers <span>(882)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>HRX by Hrithik Roshan <span>(804)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>Fabflee <span>(763)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>MKH <span>(732)</span></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="filter-section">
+                <h4>Color</h4>
+                <ul>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span class="color-dot" style="background-color: #000;"></span>
+                            <span>Black <span>(23461)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span class="color-dot" style="background-color: #0000FF;"></span>
+                            <span>Blue <span>(18635)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span class="color-dot" style="background-color: #FFFFFF; border: 1px solid #000;"></span>
+                            <span>White <span>(17533)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span class="color-dot" style="background-color: #000080;"></span>
+                            <span>Navy Blue <span>(11614)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span class="color-dot" style="background-color: #008000;"></span>
+                            <span>Green <span>(10549)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span class="color-dot" style="background-color: #808080;"></span>
+                            <span>Grey <span>(8745)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span class="color-dot" style="background-color: #FF0000;"></span>
+                            <span>Red <span>(7192)</span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <a href="#" style="color: #FF0000;">+ 39 more</a>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-placeholder">
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-1.jpg') }}" alt="Men 1"></a>
+                <button class="settings-button">
+                    <a href="write your link here">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-2.jpg') }}" alt="Men 2"></a>
+                <button class="settings-button">
+                    <a href="write your link here">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-3.jpg') }}" alt="Men 3"></a>
+                <button class="settings-button">
+                    <a href="write your link here">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-4.jpg') }}" alt="Men 4"></a>
+                <a href="file:///D:/OneDrive/Mukta_OneDrive/Mukta_exploration/Myntra_2024/Database/static/images/shirt-pant.html" class="settings-link">
+                    <button class="settings-button">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </button>
+                </a>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-5.jpg') }}" alt="Men 5"></a>
+                <button class="settings-button">
+                    <a href="file:///D:/OneDrive/Mukta_OneDrive/Mukta_exploration/Myntra_2024/Database/static/images/shirt-2-pant.html">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-6.jpg') }}" alt="Men 6"></a>
+                <button class="settings-button">
+                    <a href="write your link here">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-7.jpg') }}" alt="Men 7"></a>
+                <button class="settings-button">
+                    <a href="write your link here">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-8.jpg') }}" alt="Men 8"></a>
+                <button class="settings-button">
+                    <a href="write your link here">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-9.jpg') }}" alt="Men 9"></a>
+                <button class="settings-button">
+                    <a href="write your link here">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+            <div class="content-item">
+                <a href="#"><img src="{{ url_for('static', filename='images/shorts-10.jpg') }}" alt="Men 10"></a>
+                <button class="settings-button">
+                    <a href="write your link here">
+                        <img src="{{ url_for('static', filename='images/baggg.jpg') }}" alt="Settings">
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script> <!-- Link your existing script file -->
+</body>
+</html>

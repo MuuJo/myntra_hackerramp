@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .profile h2 {
+            margin: 10px 0 5px;
+            font-size: 20px;
+        }
+
+        .profile p {
+            color: #777;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-bottom: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ff3f6c; /* Myntra pink */
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ffebf0; /* Light pink */
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+
+        .personal-info, .your-aesthetics, .friends {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .personal-info h1, .your-aesthetics h2, .friends h2 {
+            margin-top: 0;
+            color: #ff3f6c; /* Myntra pink */
+        }
+
+        form {
+            display: grid;
+            gap: 10px;
+        }
+
+        form label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="tel"],
+        form input[type="date"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f4f4f4;
+        }
+
+        form .gender {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        form button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button[type="submit"] {
+            background-color: #ff3f6c; /* Myntra pink */
+            color: #fff;
+        }
+
+        form button[type="button"] {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #e0335e;
+        }
+
+        form button[type="button"]:hover {
+            background-color: #ccc;
+        }
+
+        .aesthetic-board, .friend {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .aesthetic-board:hover, .friend:hover {
+            background-color: #ffebf0; /* Light pink */
+        }
+
+        .aesthetic-board img, .friend img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .aesthetic-board div, .friend div {
+            flex: 1;
+        }
+
+        .aesthetic-board h3, .friend h3 {
+            margin: 0;
+            font-size: 16px;
+            color: black; /* Myntra pink */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="{{ url_for('static', filename='images/fr1.jpg') }}" alt="Profile Picture">
+                <h2>Nitya Daga</h2>
+                <p>Balance: 380.00</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">My Wallet</a></li>
+                    <li><a href="#">My Rewards</a></li>
+                    <li><a href="#">My Orders</a></li>
+                    <li><a href="#">Personal Information</a></li>
+                    <li><a href="#">Rewards</a></li>
+                    <li><a href="#">Addresses</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Contact Preferences</a></li>
+                    <li><a href="#">Social Networks</a></li>
+                    <li><a href="{{ url_for('aesthetic_page') }}">Your Aesthetics</a></li>
+                    <li><a href="#">Friends</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main>
+            <section class="personal-info">
+                <h1>Personal Information</h1>
+                <form>
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="Enter your first name">
+                    
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Enter your last name">
+                    
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com">
+                    
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1234567890">
+                    
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob">
+                    
+                    <div class="gender">
+                        <label>Gender</label>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                    
+                    <button type="submit">Save</button>
+                    <button type="button">Cancel</button>
+                </form>
+            </section>
+            <section class="your-aesthetics">
+                <h2>Your Aesthetics</h2>
+                <a href="{{ url_for('lead_page') }}" class="aesthetic-board" target="_blank">
+                    <div>
+                        <h3>Jaipur Royals</h3>
+                    </div>
+                </a>
+                <a href="your-link-here" class="aesthetic-board">
+                    <div>
+                        <h3>AWOL</h3>
+                    </div>
+                </a>
+            </section>
+            <section class="friends">
+                <h2>Friends</h2>
+                <div class="friend">
+                    <img src="{{ url_for('static', filename='images/fr2.jpg') }}" alt="Friend 1">
+                    <div>
+                        <h3>Friend 1</h3>
+                    </div>
+                </div>
+                <div class="friend">
+                    <img src="{{ url_for('static', filename='images/fr3.jpg') }}" alt="Friend 2">
+                    <div>
+                        <h3>Friend 2</h3>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,526 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+#topbar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: center;
+}
+
+#settings-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: relative; 
+}
+
+#name-container {
+    display: flex;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+}
+
+#toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 400px;
+    margin-left: auto;
+}
+
+#name-container label {
+    margin-right: 10px;
+}
+
+#toggle-container label {
+    margin-right: 10px;
+}
+
+#aesthetic-name {
+    font-size: 18px;
+    padding: 5px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 200px;
+    display: inline-block;
+    text-align: left;
+    top: 2px;
+    margin: 0 10px;
+}
+
+.toggle-switch-checkbox {
+    display: none;
+}
+
+.toggle-switch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+}
+
+.toggle-switch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.toggle-switch-inner:before, .toggle-switch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 24px;
+    padding: 0;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+    box-sizing: border-box;
+}
+
+.toggle-switch-inner:before {
+    content: "Public";
+    background-color: #fff;
+    color: #444;
+}
+
+.toggle-switch-inner:after {
+    content: "Private";
+    background-color: #ff3f6c;
+    color: #fff;
+    text-align: right;
+}
+
+.toggle-switch-switch {
+    display: block;
+    width: 18px;
+    margin: 3px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 90px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
+    margin-left: 0;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
+    right: 0px;
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#main-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 300px;
+    height: 600px;
+    margin: 0 10px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+#categories-container {
+    width: 300px;
+    height: auto;
+    flex-shrink: 0;
+    background-color: #fff;
+    margin: 20px;
+}
+
+.categories-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.categories-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.categories-grid .dropdown {
+    position: relative;
+    display: inline-block;
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+.dropbtn {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#button-list-container {
+    width: 300px;
+    height: auto;
+    flex-shrink: 0;
+    background-color: #fff;
+    margin: 20px;
+}
+
+#button-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#button-list li {
+    margin-bottom: 10px;
+}
+
+.custom-button-label {
+    display: flex;
+    align-items: center;
+}
+
+.custom-checkbox {
+    margin-right: 5px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.custom-checkbox:checked::before {
+    content: '✔';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #ff3f6c;
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 4px;
+}
+
+.custom-button {
+    padding: 10px 20px;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}
+
+.save-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    background-color: #ff3f6c;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#button-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+#drop-container {
+    background-color: #fff;
+    border: 2px dashed #ddd;
+    width: 70%;
+    height: 500px;
+    margin: 20px auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#center-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+input {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.toggle-switch-label, .toggle-switch-inner, .toggle-switch-switch {
+    font-family: 'Roboto', sans-serif;
+}
+
+.section-title {
+    border-bottom: 2px solid #e0e0e0; /* Myntra grey color */
+    padding-bottom: 10px; /* Adjust spacing as needed */
+    margin-bottom: 20px; /* Adjust spacing as needed */
+    font-size: 1.5em; /* Adjust font size as needed */
+}
+
+h4.our-bag {
+    text-align: left;
+    padding-left: 100px; /* Adjust this value as needed */
+}
+.center-left-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align images to the left */
+    justify-content: flex-start; /* Align images to the top */
+    padding: 10px; /* Optional: Add padding if needed */
+    position: absolute;
+    top: 140px; /* Adjust this value to control the top position */
+    left: 140px;
+}
+
+.deliver {
+    display: block;
+    margin-bottom: 10px; /* Add some space between images */
+}
+
+.offer-container {
+    margin-top: 10px; /* Add space before the offeravail image */
+}
+
+.clothes {
+    margin-top: 20px;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start; 
+    padding: 10px; 
+    position: absolute;
+    top: 140px; 
+    left: 800px;
+}
+
+/* Add color codes based on Myntra's branding */
+.myntra-pink {
+    background-color: #e50077; /* Myntra's pink color */
+    color: #ffffff; /* White text color */
+}
+
+/* Common button styling */
+.button-container {
+    margin-top: 20px; /* Space between the image and buttons */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align buttons to the left */
+}
+
+/* Container for buttons, center align them horizontally */
+/* Container for buttons, align them to the right */
+.button-container {
+    margin-top: 20px; /* Space between the image and buttons */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align buttons to the right */
+    width: 100%; /* Make the container full-width */
+}
+
+.btn {
+    background-color: #e50077; /* Myntra pink or your preferred color */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px; /* Adjusted padding for smaller buttons */
+    margin-bottom: 8px; /* Space between buttons */
+    font-family: 'Roboto', sans-serif; /* Font style */
+    font-size: 12px; /* Font size */
+    font-weight: 500; /* Make the font bold */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 250px; /* Maximum width for buttons */
+    text-align: center; /* Center text inside the button */
+}
+
+.btn:hover {
+    background-color: #c4006c; /* Darker pink on hover */
+}
+
+.s_ad-image {
+    display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align images to the left */
+        justify-content: flex-start; /* Align images to the top */
+        padding: 10px; /* Optional: Add padding if needed */
+        position: absolute;
+        top: 100px; /* Adjust this value to control the top position */
+        left: 140px;
+
+}
+
+.ad-image{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align images to the left */
+    justify-content: flex-start; /* Align images to the top */
+    padding: 10px; /* Optional: Add padding if needed */
+    position: absolute;
+    top: 160px; /* Adjust this value to control the top position */
+    left: 200px;
+
+}
+
+.ad-2-image{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align images to the left */
+    justify-content: flex-start; /* Align images to the top */
+    padding: 10px; /* Optional: Add padding if needed */
+    position: absolute;
+    top: 400px; /* Adjust this value to control the top position */
+    left: 200px;
+
+}.select_address label {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px; /* Add some space between labels */
+    top: 160px; /* Adjust this value to control the top position */
+    left: 150px;
+}
+
+.checkbox_1{
+    margin-right: 5px;
+    cursor: pointer;
+    width: 10px;
+    height: 20px;
+    position: relative;
+    top:75px;
+    left: 180px;
+}
+
+
+.checkbox_2{
+    margin-right: 5px;
+    cursor: pointer;
+    width: 10px;
+    height: 20px;
+    position: relative;
+    top:280px;
+    left: 180px;
+}
+
+.right-container-gd{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start; 
+        padding: 10px; 
+        position: absolute;
+        top: 140px; 
+        left: 850px;    
+}
+
+.amount-payable {
+    margin-top: 5px; /* Add some space between the image and the text */
+    margin-left: 10px; /* Adjust this value to move the text to the right */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700; /* Bold text */
+    font-size: 14px; /* Adjust size as needed */
+}
+
+.continue-button {
+    margin-top: 20px; /* Space between the text and the button */
+    padding: 10px 20px; /* Button padding */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px; /* Button text size */
+    font-weight: 500; /* Button text weight */
+    color: #ffffff; /* Button text color */
+    background-color: #e50077; /* Button background color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.continue-button:hover {
+    background-color: #333333; /* Darker background color on hover */
+}
+

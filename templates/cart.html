@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Own Aesthetic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .first {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .first a {
+            text-decoration: none;
+            color: #000;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .middle {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 5px 10px;
+            background-color: #f7f7f7;
+        }
+
+        .middle input {
+            border: none;
+            outline: none;
+            background: none;
+            padding: 5px;
+            width: 200px;
+        }
+
+        .middle input::placeholder {
+            color: #ccc;
+        }
+
+        .last {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            margin: 0 10px;
+            font-size: 10px;
+        }
+
+        .icon-container img {
+            height: 20px;
+        }
+
+        .product-container {
+            display: flex;
+            max-width: 900px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Add space between products */
+        }
+
+        .product-images {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-images img {
+            width: 80%;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            flex: 2;
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #e53935;
+            margin-bottom: 20px;
+        }
+
+        .discount {
+            text-decoration: line-through;
+            color: #aaa;
+            margin-left: 10px;
+        }
+
+        .sizes {
+            margin-bottom: 20px;
+        }
+
+        .sizes span {
+            margin-right: 10px;
+        }
+
+        .sizes input {
+            margin-right: 5px;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .buttons a {
+            text-decoration: none;
+        }
+
+        .buttons button {
+            background-color: #e53935;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .buttons button:last-child {
+            background-color: #555;
+        }
+
+        .more-colors img {
+            width: 250px;
+            height: 50px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <a href="#"><img src="{{ url_for('static', filename='images/logo-myntra-41466.png') }}" alt="Myntra Logo"></a>
+            </div>
+            <div class="first">
+                <a href="#">MEN</a>
+                <a href="#">WOMEN</a>
+                <a href="#">KIDS</a>
+                <a href="#">HOME & LIVING</a>
+                <a href="#">BEAUTY</a>
+                <a href="#">STUDIO</a>
+                <a href="{{ url_for('aesthetic_page') }}">AESTHETICS</a>
+            </div>
+            <div class="middle">
+                <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search Icon" style="height: 16px; margin-right: 5px;">
+                <input type="search" name="search" id="search" placeholder="Search for products, brands and more">
+            </div>
+            <div class="last">
+                <a href="{{ url_for('profile_page') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/nav_profile.png') }}" alt="Profile">
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/icons8-heart-50.png') }}" alt="Wishlist">
+                    <span>Wishlist</span>
+                </a>
+                <a href="{{ url_for('friend_cart') }}" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/shopping-bag.png') }}" alt="Bag">
+                    <span>Bag</span>
+                </a>
+                <a href="http://localhost:5173/" class="icon-container">
+                    <img src="{{ url_for('static', filename='images/chat_icon.png') }}" alt="Chat-icon">
+                    <span>Friends</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- Product 1 -->
+    <div class="product-container">
+        <div class="product-images">
+            <img src="{{ url_for('static', filename='images/s1.png') }}" alt="Product Image 1">
+        </div>
+        <div class="product-details">
+            <div class="product-title">Louise Philippe Pure Cotton Slim Fit tshirt</div>
+            <div class="rating">4.5 ★ | 2k Ratings</div>
+            <div class="price">₹1104<span class="discount">₹1699</span> (35% OFF)</div>
+            <div class="sizes">
+                <span>Select Size</span>
+                <input type="radio" name="size" id="size-s1"><label for="size-s1">S</label>
+                <input type="radio" name="size" id="size-m1"><label for="size-m1">M</label>
+                <input type="radio" name="size" id="size-l1"><label for="size-l1">L</label>
+                <input type="radio" name="size" id="size-xl1"><label for="size-xl1">XL</label>
+                <input type="radio" name="size" id="size-xxl1"><label for="size-xxl1">XXL</label>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('shared_cart') }}" class="button-link">
+                    <button>Add to Bag</button>
+                </a>
+                <button>Wishlist</button>
+            </div>
+        </div>
+    </div>
+    <!-- Product 2 -->
+    <div class="product-container">
+        <div class="product-images">
+            <img src="{{ url_for('static', filename='images/s2.png') }}" alt="Product Image 1">
+        </div>
+        <div class="product-details">
+            <div class="product-title">Levi's Blue Jeans</div>
+            <div class="rating">4.0 ★ | 1k Ratings</div>
+            <div class="price">₹1247 <span class="discount">₹3199</span> (61% OFF)</div>
+            <div class="sizes">
+                <span>Select Size</span>
+                <input type="radio" name="size" id="size-s2"><label for="size-s2">S</label>
+                <input type="radio" name="size" id="size-m2"><label for="size-m2">M</label>
+                <input type="radio" name="size" id="size-l2"><label for="size-l2">L</label>
+                <input type="radio" name="size" id="size-xl2"><label for="size-xl2">XL</label>
+                <input type="radio" name="size" id="size-xxl2"><label for="size-xxl2">XXL</label>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('shared_cart') }}" class="button-link">
+                    <button>Add to Bag</button>
+                </a>
+                <button>Wishlist</button>
+            </div>
+        </div>
+    </div>
+    <!-- Product 3 -->
+    <div class="product-container">
+        <div class="product-images">
+            <img src="{{ url_for('static', filename='images/s4.png') }}" alt="Product Image 2">
+        </div>
+        <div class="product-details">
+            <div class="product-title">Adidas Cap</div>
+            <div class="rating">4.2 ★ | 900 Ratings</div>
+            <div class="price">₹699<span class="discount">₹1399</span> (50% OFF)</div>
+            <div class="sizes">
+                <span>Select Size</span>
+                <input type="radio" name="size" id="size-s3"><label for="size-s3">S</label>
+                <input type="radio" name="size" id="size-m3"><label for="size-m3">M</label>
+                <input type="radio" name="size" id="size-l3"><label for="size-l3">L</label>
+                <input type="radio" name="size" id="size-xl3"><label for="size-xl3">XL</label>
+                <input type="radio" name="size" id="size-xxl3"><label for="size-xxl3">XXL</label>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('shared_cart') }}" class="button-link">
+                    <button>Add to Bag</button>
+                </a>
+                <button>Wishlist</button>
+            </div>
+        </div>
+    </div>
+    <!-- Product 4 -->
+    <div class="product-container">
+        <div class="product-images">
+            <img src="{{ url_for('static', filename='images/s3.png') }}" alt="Product Image 4">
+        </div>
+        <div class="product-details">
+            <div class="product-title">Nike Limited Editions</div>
+            <div class="rating">4.1 ★ | 1800 Ratings</div>
+            <div class="price">₹10496 <span class="discount">₹14995</span> (30% OFF)</div>
+            <div class="sizes">
+                <span>Select Size</span>
+                <input type="radio" name="size" id="size-s4"><label for="size-s4">UK3</label>
+                <input type="radio" name="size" id="size-m4"><label for="size-m4">UK5</label>
+                <input type="radio" name="size" id="size-l4"><label for="size-l4">US3</label>
+                <input type="radio" name="size" id="size-xl4"><label for="size-xl4">US5</label>
+                <input type="radio" name="size" id="size-xxl4"><label for="size-xxl4">US7</label>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('shared_cart') }}" class="button-link">
+                    <button>Add to Bag</button>
+                </a>
+                <button>Wishlist</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
